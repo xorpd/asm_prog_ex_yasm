@@ -25,20 +25,21 @@
 ;       - Is it possible to get a Variadic function using the other calling
 ;         convention?
 ;
+BITS 32
+global main
+extern exit
 
-format PE console
-entry start
+%include "training.s"
 
-include 'win32a.inc' 
-
-; ===============================================
-section '.data' data readable writeable
-    summerp         db  'Welcome to the summer party!',13,10,0
 
 ; ===============================================
-section '.text' code readable executable
+section .data
+    summerp         db  'Welcome to the summer party!',10,0
 
-start:
+; ===============================================
+section .text
+
+main:
     ; Print: Welcome to the summer party!
     mov     esi,summerp
     call    print_str
@@ -72,7 +73,7 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
 
 ; =============================================
@@ -103,4 +104,3 @@ summer:
     pop     ecx
     ret
 
-include 'training.inc'

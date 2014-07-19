@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -25,20 +25,20 @@
 ;       formula for those numbers?
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
-
-; ===============================================
-section '.data' data readable writeable
+%include "training.s"
+; equ==============================================
+section .data
     wanted_elem     db  'Enter wanted element number: ',0
     elem_value      db  'Wanted element value: ',0
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
     mov     esi,wanted_elem
     call    print_str
     call    read_hex
@@ -53,9 +53,9 @@ start:
 
     ; Exit the process:
     push    0
-    call    [ExitProcess]
+    call    exit
 
-; ===============================================
+; equ==============================================
 ; calc_num(index)
 ;
 ; Input:
@@ -66,7 +66,7 @@ start:
 ;   ?
 ;
 calc_num:
-    .index = 8
+    .index equ 8
     push    ebp
     mov     ebp,esp
 
@@ -106,7 +106,7 @@ calc_num:
     pop     ebp
     ret
 
-; ===============================================
+; equ==============================================
 ; calc_next(arr_addr,arr_len)
 ;
 ; Input:
@@ -117,8 +117,8 @@ calc_num:
 ;   ?
 ;
 calc_next: 
-    .arr_addr = 8
-    .arr_len = 0ch
+    .arr_addr equ 8
+    .arr_len equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -158,4 +158,3 @@ calc_next:
     pop     ebp
     ret
 
-include 'training.inc'

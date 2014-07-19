@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -33,21 +33,22 @@
 ;       hexadecimal digits too.
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-MAX_EXPR = 4
-; ===============================================
-section '.data' data readable writeable
+MAX_EXPR equ 4
+; equ==============================================
+section .data
     enter_exp       db  'Enter an expression of the form [digit][operator]'
-                    db  '[digit]',13,10
-                    db  'Examples: 1+2,3-5,4*3:',13,10
+                    db  '[digit]',10
+                    db  'Examples: 1+2,3-5,4*3:',10
                     db  '>',0
 
     result          db  'The result is: ',0
-    expr            db  MAX_EXPR dup (0)
+    expr            db  MAX_EXPR 
 
     oper_tbl:  
     dd      def_op, def_op, def_op, def_op, def_op, def_op, def_op, def_op
@@ -83,10 +84,10 @@ section '.data' data readable writeable
     dd      def_op, def_op, def_op, def_op, def_op, def_op, def_op, def_op
     dd      def_op, def_op, def_op, def_op, def_op, def_op, def_op, def_op
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
     ; Ask the user for expression:
     mov     esi,enter_exp
     call    print_str
@@ -108,10 +109,10 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
 
-; ===========================================================
+; equ==========================================================
 ; digit_to_num(digit_addr)
 ;
 ; Input:
@@ -122,7 +123,7 @@ start:
 ;   ?
 ;
 digit_to_num:
-    .digit_addr = 8
+    .digit_addr equ 8
     push    ebp
     mov     ebp,esp
     push    esi
@@ -141,7 +142,7 @@ digit_to_num:
     leave
     ret
 
-; ===========================================================
+; equ==========================================================
 ; func_by_operator(oper_addr)
 ;
 ; Input:
@@ -152,7 +153,7 @@ digit_to_num:
 ;   ?
 ;
 func_by_operator:
-    .oper_addr = 8
+    .oper_addr equ 8
     push    ebp
     mov     ebp,esp
     push    esi
@@ -168,7 +169,7 @@ func_by_operator:
     ret
 
 
-; ===========================================================
+; equ==========================================================
 ; eval(str_addr)
 ;
 ; Input:
@@ -179,7 +180,7 @@ func_by_operator:
 ;   ?
 ;
 eval:
-    .str_addr = 8
+    .str_addr equ 8
     push    ebp
     mov     ebp,esp
 
@@ -208,7 +209,7 @@ eval:
     leave
     ret
 
-; ===========================================================
+; equ==========================================================
 ; op(a,b)
 ;
 ; Input:
@@ -220,8 +221,8 @@ eval:
 ;
 
 def_op:
-    .a = 8
-    .b = 0ch
+    .a equ 8
+    .b equ 0ch
     push    ebp
     mov     ebp,esp
     xor     eax,eax
@@ -229,8 +230,8 @@ def_op:
     ret
 
 star_op:
-    .a = 8
-    .b = 0ch
+    .a equ 8
+    .b equ 0ch
     push    ebp
     mov     ebp,esp
     push    edx
@@ -243,8 +244,8 @@ star_op:
     ret
 
 plus_op:
-    .a = 8
-    .b = 0ch
+    .a equ 8
+    .b equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -255,8 +256,8 @@ plus_op:
     ret
 
 minus_op:
-    .a = 8
-    .b = 0ch
+    .a equ 8
+    .b equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -266,4 +267,3 @@ minus_op:
     leave
     ret
 
-include 'training.inc'

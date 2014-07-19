@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -25,23 +25,23 @@
 ;       Hint: You can print the contents of a and b to the console at every
 ;       invocation of the stein function.
 ;
-; 5.    Bonus: What is the complexity of this algorithm? How many invocations of
+; 5.    Bonus: What is the comply of this algorithm? How many invocations of
 ;       stein are expected for an initial pair of numbers (a,b)?
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
-
-; ===============================================
-section '.data' data readable writeable
-    enter_two       db  'Enter two numbers:',13,10,0
+%include "training.s"
+; equ==============================================
+section .data
+    enter_two       db  'Enter two numbers:',10,0
     result          db  'Result: ',0
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
     ; Ask for two numbers:
     mov     esi,enter_two
     call    print_str
@@ -64,9 +64,9 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; ===========================================================
+; equ==========================================================
 ; stein(a,b)
 ;
 ; Input:
@@ -77,8 +77,8 @@ start:
 ;   ?
 ;
 stein:
-    .a = 8
-    .b = 0ch
+    .a equ 8
+    .b equ 0ch
     enter   0,0
     push    esi
     push    edi
@@ -140,4 +140,3 @@ stein:
     leave
     ret
 
-include 'training.inc'

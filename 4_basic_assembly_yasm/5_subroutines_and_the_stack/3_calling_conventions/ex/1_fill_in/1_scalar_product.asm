@@ -34,25 +34,33 @@
 ;       the call to scalar_product, to verify that the stack is balanced.
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-struct VEC
-    x   dd  ?
-    y   dd  ?
-ends
+struc VEC
+    .x:   dd  ?
+    .y:   dd  ?
+endstruc
 
 ; ===============================================
-section '.data' data readable writeable
-    vec1            VEC     5,-4
-    vec2            VEC     0c3h,-45h
+section .data
+    vec1: ISTRUC VEC
+	at VEC.x ,	dd  5
+	at VEC.y,	dd -4            
+	IEND	
+    vec2: ISTRUC VEC
+	at VEC.x,	dd 0xc3
+	at VEC.y,	dd -0x45
+	IEND
+
     scalar_result   db  'Scalar product result: ',0
 ; ===============================================
-section '.text' code readable executable
+section .text
 
-start:
+main:
     ; Invoke scalar product of vec1 and vec2:
     push    vec1
     push    vec2
@@ -65,7 +73,7 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
 
 ; =================================================
@@ -80,7 +88,6 @@ start:
 ;
 
 ; **** Fill in this function ****
-; scalar_product:
+;scalar_product:
 
 
-include 'training.inc'

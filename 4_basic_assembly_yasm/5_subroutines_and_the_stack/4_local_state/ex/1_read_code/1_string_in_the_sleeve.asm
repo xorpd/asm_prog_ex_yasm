@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -23,28 +23,28 @@
 ;       Carefully understand what happens to the stack.
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
+; equ==============================================
+section .text
 
-; ===============================================
-section '.text' code readable executable
-
-start:
+main:
 
     call    .skip               ; ?!
-    db      'Living in the text section',13,10
-    db      '   my life is not a life...',13,10,0
+    db      'Living in the text section',10
+    db      '   my life is not a life...',10,0
 .skip:
     call    print_str2
     add     esp,4
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; ===============================================
+; equ==============================================
 ; print_str2(str_addr)
 ;
 ; Input:
@@ -54,7 +54,7 @@ start:
 ;   Assumes that str_addr is null terminated.
 ;
 print_str2:
-    .str_addr = 8
+    .str_addr equ 8
     enter   0,0
     push    esi
     mov     esi,dword [ebp + .str_addr]
@@ -63,4 +63,3 @@ print_str2:
     leave
     ret
 
-include 'training.inc'

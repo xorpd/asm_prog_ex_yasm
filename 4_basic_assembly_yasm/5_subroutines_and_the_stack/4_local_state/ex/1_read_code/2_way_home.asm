@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -29,21 +29,21 @@
 ;           directly. What do you see? What is the meaning of that output?
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
+; equ==============================================
+section .text
 
-; ===============================================
-section '.text' code readable executable
 
-
-start:
+main:
     call    dummy1
 
     ; Exit the process:
     push    0
-    call    [ExitProcess]
+    call    exit
 
 
 dummy1:
@@ -64,7 +64,7 @@ dummy3:
     leave
     ret
 
-; ===============================================
+; equ==============================================
 ; way_home()
 ;
 ; Output:
@@ -90,4 +90,3 @@ way_home:
 
     ret
 
-include 'training.inc'

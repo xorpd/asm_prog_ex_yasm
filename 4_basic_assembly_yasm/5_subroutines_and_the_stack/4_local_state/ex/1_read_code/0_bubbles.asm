@@ -1,5 +1,5 @@
 ; Basic Assembly
-; ==============
+; equ=============
 ; 
 ; Subroutines and the stack - Local state
 ; ---------------------------------------
@@ -28,24 +28,25 @@
 ;       take to execute this algorithm for an array of size N elements?)
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-; ===============================================
-section '.data' data readable writeable
+; equ==============================================
+section .data
     nums        dd  8,15h,141h,0a2h,31h,14h,31h,82h,34h,55h
-    NUMS_LEN = ($ - nums) / 4
+    NUMS_LEN equ ($ - nums) / 4
 
-    initial_arr     db  'Initial array:',13,10,0
-    array_sorted    db  'Array sorted:',13,10,0
+    initial_arr     db  'Initial array:',10,0
+    array_sorted    db  'Array sorted:',10,0
 
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
 
     mov     esi,initial_arr
     call    print_str
@@ -70,9 +71,9 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; ================================================
+; equ===============================================
 ; print_arr(arr_addr,arr_len)
 ;
 ; Input:
@@ -83,8 +84,8 @@ start:
 ;   ?
 ;
 print_arr:
-    .arr_addr = 8h
-    .arr_len = 0ch
+    .arr_addr equ  0x8
+    .arr_len equ  0ch
     push    ebp
     mov     ebp,esp
 
@@ -108,7 +109,7 @@ print_arr:
     pop     ebp
     ret
 
-; ================================================
+; equ===============================================
 ; sort_arr(arr_addr,arr_len)
 ;
 ; Input:
@@ -119,8 +120,8 @@ print_arr:
 ;   ?
 ;
 sort_arr:
-    .arr_addr = 8h
-    .arr_len = 0ch
+    .arr_addr equ 8h
+    .arr_len equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -158,7 +159,7 @@ sort_arr:
     ret
 
 
-; ===============================================
+; equ==============================================
 ; compare_and_swap(x_addr,y_addr)
 ;
 ; Input:
@@ -169,8 +170,8 @@ sort_arr:
 ;   ?
 ;
 compare_and_swap:
-    .x_addr = 8h
-    .y_addr = 0ch
+    .x_addr equ 8h
+    .y_addr equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -197,7 +198,7 @@ compare_and_swap:
     pop     ebp
     ret
 
-; =================================================
+; equ================================================
 ; swap(x_addr,y_addr)
 ;
 ; Input:
@@ -208,8 +209,8 @@ compare_and_swap:
 ;   ?
 ;
 swap:
-    .x_addr = 8h
-    .y_addr = 0ch
+    .x_addr equ 8h
+    .y_addr equ 0ch
     push    ebp
     mov     ebp,esp
 
@@ -230,4 +231,3 @@ swap:
     pop     ebp
     ret
 
-include 'training.inc'

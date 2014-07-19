@@ -21,21 +21,22 @@
 ;       your piece of code, to make sure that the stack is balanced.
 ;
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
 ; ===============================================
-section '.data' data readable writeable
+section .data
     src_data        db  'This is the source data!',0
-    SRC_DATA_LEN = $ - src_data
-    dest_data       db  SRC_DATA_LEN    dup ('A')
+    SRC_DATA_LEN equ $ - src_data
+    dest_data       times  SRC_DATA_LEN db 0  
 
 ; ===============================================
-section '.text' code readable executable
+section .text
 
-start:
+main:
 
     ; Copy src_data into dest_data:
 
@@ -51,7 +52,7 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
 
 ; ================================================
@@ -85,5 +86,3 @@ copy_data:
     pop     edi
     pop     esi
     ret
-
-include 'training.inc'

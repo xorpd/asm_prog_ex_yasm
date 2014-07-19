@@ -11,6 +11,8 @@ Make GDB cheat sheet.
 Make instructions on using Yasm.
 
 
+COMMENTS!!!!!
+
 
 
 This repository contains exercises for the Assembly Programming course.

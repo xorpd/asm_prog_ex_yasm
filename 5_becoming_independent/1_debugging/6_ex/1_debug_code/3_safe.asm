@@ -1,5 +1,5 @@
 ; Becoming Independent
-; ====================
+; equ===================
 ; 
 ; Debugging
 ; ---------
@@ -22,22 +22,23 @@
 ; password and finally prints back a message to the user regarding the success
 ; of the login attempt.
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-PASS_LEN = 9h
+PASS_LEN equ 9h
 
-; ===============================================
-section '.data' data readable writeable
+; equ==============================================
+section .data
     please_enter    db  'Enter secret hex password: ',0
 
     pass_correct    db  'Password is correct. Well done!',13,10,0
     pass_invalid    db  'Invalid password.',13,10,0
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
 start:
     ; Ask for a secret hex password from the user:
@@ -61,9 +62,9 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; =========================================
+; equ========================================
 ; check_pass
 ; 
 ; Operation: 
@@ -73,8 +74,8 @@ start:
 ;   eax     -   password number (32 bits)
 ;
 ; Output:
-;   ZF = 0  :   Invalid password number.
-;   ZF = 1  :   Correct password.
+;   ZF equ 0  :   Invalid password number.
+;   ZF equ 1  :   Correct password.
 ; 
 check_pass:
     push    edx
@@ -88,7 +89,7 @@ check_pass:
     pop     edx
     ret
 
-; ===========================================
+; equ==========================================
 ; tranform_num
 ;
 ; Operation:
@@ -117,4 +118,3 @@ transform_num:
     pop     edx
     ret
 
-include 'training.inc'

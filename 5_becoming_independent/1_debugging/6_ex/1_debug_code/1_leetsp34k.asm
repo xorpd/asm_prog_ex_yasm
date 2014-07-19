@@ -1,5 +1,5 @@
 ; Becoming Independent
-; ====================
+; equ===================
 ; 
 ; Debugging
 ; ---------
@@ -22,25 +22,26 @@
 ; The program requests a string from the user, and transforms the string into
 ; leetspeek. Finally the resulting string is printed to the console.
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-MAX_USER_STRING = 40h
+MAX_USER_STRING equ 40h
 
-; ===============================================
-section '.data' data readable writeable
+; equ==============================================
+section .data
     please_enter    db  'Please enter a string:',13,10,0
 
-; ===============================================
-section '.bss' readable writeable
-    user_string     db  MAX_USER_STRING dup (?)
+; equ==============================================
+section .bss
+    user_string     resb  MAX_USER_STRING
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
     ; Ask for a string from the user:
     mov     esi,please_enter
     call    print_str
@@ -61,9 +62,9 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; =========================================
+; equ========================================
 ; transform_leet(str)
 ; 
 ; Operation: 
@@ -78,7 +79,7 @@ start:
 ;   string.
 ; 
 transform_leet:
-    .str = 8
+    .str equ 8
     push    ebp
     mov     ebp,esp
 
@@ -97,7 +98,7 @@ transform_leet:
     pop     ebp
     ret
 
-; =========================================
+; equ========================================
 ; transform_leet_char(char_addr)
 ; 
 ; Operation:
@@ -111,38 +112,36 @@ transform_leet:
 ;   No output in eax register.
 ;
 transform_leet_char:
-    .char_addr = 8
+    .char_addr equ 8
     push    ebp
     mov     ebp,esp
 
     mov     esi,dword [ebp + .char_addr]
 
     cmp     byte [esi],'e'
-    jnz     @f
+    jnz     f
     mov     byte [esi],'3'
-    jmp     .end_func
-@@:
+    jmp     end_func
+f:
     cmp     byte [esi],'a'
-    jnz     @f
+    jnz     @f_
     mov     byte [esi],'4'
-    jmp     .end_func
-@@:
+    jmp     end_func
+@f_:
     cmp     byte [esi],'l'
-    jnz     @f
+    jnz     @f__
     mov     byte [esi],'1'
-    jmp     .end_func
-@@:
+    jmp     end_func
+@f__:
     cmp     byte [esi],'o'
-    jnz     @f
+    jnz     @f___
     mov     byte [esi],'0'
-    jmp     .end_func
-@@:
+    jmp     end_func
+@f___:
     cmp     byte [esi],'t'
-    jnz     @f
+    jnz     end_func
     mov     byte [esi],'7'
-@@:
-.end_func:
+end_func:
     pop     ebp
     ret
 
-include 'training.inc'

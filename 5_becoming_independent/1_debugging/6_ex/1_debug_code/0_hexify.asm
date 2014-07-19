@@ -1,5 +1,5 @@
 ; Becoming Independent
-; ====================
+; equ===================
 ; 
 ; Debugging
 ; ---------
@@ -22,24 +22,25 @@
 ; The program reads a decimal number from the user, and converts it to its
 ; hexadecimal representation.
 
-format PE console
-entry start
+BITS 32
+global	main
+extern	exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-MAX_NUM_STR = 9h
+MAX_NUM_STR equ 9h
 
-; ===============================================
-section '.data' data readable writeable
+; equ==============================================
+section .data
     please_enter    db  'Please enter a decimal number: ',0
     hex_result      db  'Your number in hex: ',0
 
-; ===============================================
-section '.bss' readable writeable
-    num_str         db  MAX_NUM_STR dup (?)
+; equ==============================================
+section .bss
+    num_str         resb  MAX_NUM_STR
 
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
 start:
     ; Ask for a string from the user:
@@ -62,9 +63,9 @@ start:
 
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; =========================================
+; equ========================================
 ; str_to_dec_num(num_str)
 ; 
 ; Operation: 
@@ -83,7 +84,7 @@ start:
 ;   eax will contain the resulting number.
 ; 
 str_to_dec_num:
-    .num_str = 8
+    .num_str equ 8
     enter   0,0
     push    esi
     push    ecx
@@ -118,4 +119,3 @@ str_to_dec_num:
     leave
     ret
 
-include 'training.inc'

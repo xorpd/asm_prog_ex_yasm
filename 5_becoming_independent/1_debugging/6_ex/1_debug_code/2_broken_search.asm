@@ -1,5 +1,5 @@
 ; Becoming Independent
-; ====================
+; equ===================
 ; 
 ; Debugging
 ; ---------
@@ -23,23 +23,24 @@
 ; an array. An apropriate message is give to the user regarding the search
 ; results.
 
-format PE console
-entry start
+BITS 32
+global main
+extern exit
 
-include 'win32a.inc' 
+%include "training.s"
 
-; ===============================================
-section '.data' data readable writeable
+; equ==============================================
+section .data
     please_enter    db  'Please enter a number: ',13,10,0
     my_arr          dd  0h,1h,6h,1fh,32h,101h,4a2h,1211h,16bch,2998h,0abcdh,10000h
-    ARR_LEN = ($ - my_arr) / 4
+    ARR_LEN equ ($ - my_arr) / 4
 
     not_inside      db  'Your number is not inside my array!',13,10,0
     inside          db  'Your number is inside my array!',13,10,0
-; ===============================================
-section '.text' code readable executable
+; equ==============================================
+section .text
 
-start:
+main:
     ; Ask for a number:
     mov     esi,please_enter
     call    print_str
@@ -68,9 +69,9 @@ start:
 .end_prog:
     ; Exit the process:
 	push	0
-	call	[ExitProcess]
+	call	exit
 
-; =========================================
+; equ========================================
 ; is_in_array(array,arr_len,x)
 ; 
 ; Operation:
@@ -82,13 +83,13 @@ start:
 ;   x       - Dword to find inside the array.
 ; 
 ; Output:
-;   eax = 1     If the dword x is inside the array.
-;   eax = 0     Otherwise.
+;   eax equ 1     If the dword x is inside the array.
+;   eax equ 0     Otherwise.
 ;
 is_in_array:
-    .array = 8
-    .arr_len = 0ch
-    .x = 10h
+    .array equ 8
+    .arr_len equ 0ch
+    .x equ 10h
     push    ebp
     mov     ebp,esp
 
@@ -132,4 +133,3 @@ is_in_array:
     leave
     ret
 
-include 'training.inc'

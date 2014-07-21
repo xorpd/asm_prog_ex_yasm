@@ -6,6 +6,7 @@ extern read
 
 section .data 
 
+;Formats for printf and strings needed throughout
 hex_new  db 	"%x", 10, 0
 hex_  	 db	"%x", 0
 str_	 db	"%s", 0
@@ -14,6 +15,7 @@ delim 	db	"========",10,0
 
 section .text
 
+;prints value in eax in hex saves all registers
 print_eax:
 	pushad
 	push	eax
@@ -23,6 +25,7 @@ print_eax:
 	popad
 	ret
 
+;prints line splitter saves all registers
 print_delimiter:
 	pushad
 	mov	eax, delim
@@ -32,6 +35,7 @@ print_delimiter:
 	popad
 	ret
 
+;read ecx bytes into edi null terminate it all registers saved 
 read_line:
 	pushad
 	push	ecx	
@@ -44,6 +48,7 @@ read_line:
 	popad
 	ret
 
+; reads a hex value from stdin and stores it into eax ebx is not saved 
 read_hex:
 	push	ebp
 	mov	ebp, esp
@@ -59,6 +64,7 @@ read_hex:
 	leave
 	ret
 
+;prints string pointed to by esi saves all registers
 print_str:
 	pushad
     	push    esi
@@ -67,6 +73,7 @@ print_str:
 	popad
 	ret
 
+;prints eax in binary
 print_eax_binary:
 	pushad
 	mov ecx,32 ; We print 32 digits.

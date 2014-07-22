@@ -22,7 +22,7 @@ str4    db  'Hell'
 str5    db  'Hello',20h,'world',0
 
 
-song    db  'Walking in the realms of brightness',13,10
+song    db  'Walking in the realms of brightness',10
         db  'Passing the wall of above',0dh,0ah
         db  'Down into the soul',0
 

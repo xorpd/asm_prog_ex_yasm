@@ -5,10 +5,8 @@ Forked from xorpd's assembly course. Porting the fasm assembly code for Windows 
 
 TODO:
 
-Finish up the exercises.
-Make some sort of easier way to make and build the files.
-Make GDB cheat sheet.
-Make instructions on using Yasm.
+Finish up the structure exercises.
+Make instructions on using/installing Yasm.
 
 
 COMMENTS!!!!!

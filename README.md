@@ -3,15 +3,7 @@ Assembly Programming Exercises
 
 Forked from xorpd's assembly course. Porting the fasm assembly code for Windows to yasm code for Linux. Work in progress at the moment.
 
-TODO:
-
-Finish up the structure exercises.
-Make instructions on using/installing Yasm.
-
-
-COMMENTS!!!!!
-
-
+The course is roughly 90% ported and should be useable by all. The structure section is still under development but all others are done!
 
 This repository contains exercises for the Assembly Programming course.
 

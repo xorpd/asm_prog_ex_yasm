@@ -11,7 +11,7 @@ More information could be found at http://www.xorpd.net
 
 ## Install Instructions
 
-Download yasm from here Yasm[http://yasm.tortall.net/Download.html]
+Download yasm from here http://yasm.tortall.net/Download.html
 
 Install on Linux by running, ./configure; make; make install
 

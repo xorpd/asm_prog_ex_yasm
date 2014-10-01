@@ -10,7 +10,6 @@ extern exit
 %include "training.s"
 
 MAX_NAME_LEN equ 10
-GREETING_MAX equ HELLO_SIZE + MAX_NAME_LEN + HOW_ARE_SIZE + 1
 
 ; ===============================================
 section .data

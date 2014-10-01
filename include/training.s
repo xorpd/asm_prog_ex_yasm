@@ -9,6 +9,7 @@ section .data
 ;Formats for printf and strings needed throughout
 hex_new  db 	"%x", 10, 0
 hex_  	 db	"%x", 0
+dec_new  db     "%d", 10, 0
 str_	 db	"%s", 0
 new_	 db	"", 10, 0
 delim 	db	"========",10,0
@@ -20,6 +21,16 @@ print_eax:
 	pushad
 	push	eax
 	push 	hex_new
+	call 	printf
+	add	esp, 8
+	popad
+	ret
+	
+;prints value in eax in hex saves all registers
+print_eax_dec:
+	pushad
+	push	eax
+	push 	dec_new
 	call 	printf
 	add	esp, 8
 	popad

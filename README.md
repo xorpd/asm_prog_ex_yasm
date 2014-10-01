@@ -11,8 +11,10 @@ More information could be found at http://www.xorpd.net
 
 ## Install Instructions
 
-Download yasm from here http://yasm.tortall.net/Download.html
+```
+git clone https://github.com/blankwall/asm_prog_ex.git
+cd asm_prog_ex
+./install.sh
+```
 
-Install on Linux by running, ./configure; make; make install
-
-To compile a program copy the training.s file into your build directory and run yasm -f elf CODE.asm; gcc CODE.o 
+If all works hello world should be printed and you will have a directory called assembly with a basic program in it. :) !

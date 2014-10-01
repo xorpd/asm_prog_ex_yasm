@@ -1,6 +1,6 @@
 #! /bin/bash
 
-git clone https://github.com/blankwall/asm_prog_ex.git
+cd ..
 wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz ; tar -xf yasm-1.3.0.tar.gz ; cd yasm-1.3.0;
 ./configure; 
 make; 

@@ -14,7 +14,8 @@ More information could be found at http://www.xorpd.net
 ```
 git clone https://github.com/blankwall/asm_prog_ex.git
 cd asm_prog_ex
-./install.sh
+./install.s
+./test.s
 ```
 
 If all works hello world should be printed and you will have a directory called assembly with a basic program in it. :) !

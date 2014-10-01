@@ -22,7 +22,7 @@ expected.
     Then output the result.
 
 
-1.  Write a program that receives two numbers a,b and calculates their integral
+1.  Write a program that receives two numbers a,b and calculates their
     average.
 
 

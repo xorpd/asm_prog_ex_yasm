@@ -9,6 +9,7 @@ section .data
 ;Formats for printf and strings needed throughout
 hex_new  db 	"%x", 10, 0
 hex_  	 db	"%x", 0
+dec_  	 db	"%d", 0
 dec_new  db     "%d", 10, 0
 str_	 db	"%s", 0
 new_	 db	"", 10, 0
@@ -68,6 +69,22 @@ read_hex:
 	pusha
 	push	ebx
 	push 	hex_
+	call 	scanf
+	add	esp, 8
+	popa
+	mov	eax, [ebx]
+	leave
+	ret
+
+; reads a hex value from stdin and stores it into eax ebx is not saved 
+read_dec:
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 4
+	lea	ebx, [ebp-4]
+	pusha
+	push	ebx
+	push 	dec_
 	call 	scanf
 	add	esp, 8
 	popa

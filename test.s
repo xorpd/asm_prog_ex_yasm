@@ -2,6 +2,6 @@
 
 cd ..
 cd assembly
-nasm -felf test.asm 
+yasm -felf test.asm 
 gcc test.o -o test -m32
 ./test

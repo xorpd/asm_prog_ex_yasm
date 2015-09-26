@@ -63,16 +63,25 @@ read_line:
 ; reads a hex value from stdin and stores it into eax ebx is not saved 
 read_hex:
 	push	ebp
-	mov	ebp, esp
-	sub	esp, 4
-	lea	ebx, [ebp-4]
-	pusha
+	mov	    ebp, esp
+	sub	    esp, 4
+    ; Keep important registers.
+    ; We can't use pusha here, because the result is inside eax.
+    push    ebx
+    push    ecx
+    push    edx
+
+	lea	    ebx, [ebp-4]
 	push	ebx
 	push 	hex_
 	call 	scanf
-	add	esp, 8
-	popa
-	mov	eax, [ebx]
+	add	    esp, 8
+	mov	    eax, [ebx]
+
+    ; Restore registers:
+    pop     edx
+    pop     ecx
+    pop     ebx
 	leave
 	ret
 

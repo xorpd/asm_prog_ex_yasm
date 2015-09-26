@@ -1,7 +1,8 @@
 Assembly Programming Exercises
 ==============================
 
-Forked from xorpd's assembly course. Porting the fasm assembly code for Windows to yasm code for Linux. 
+A port of the assembly programming exercises of Assembly Language Adventures to
+Yasm on Linux by [blankwall](https://github.com/blankwall/).
 
 This repository contains exercises for the Assembly Programming course.
 More information could be found at http://www.xorpd.net

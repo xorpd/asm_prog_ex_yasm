@@ -5,5 +5,5 @@ set -e
 
 # Installation for ubuntu >= 16.04
 # Basically this just installs gcc-multilib and yasm
-apt install gcc-multilib yasm
+apt update && apt install gcc-multilib yasm
 

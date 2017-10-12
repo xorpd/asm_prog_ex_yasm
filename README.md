@@ -12,7 +12,7 @@ More information could be found at [www.xorpd.net](https://www.xorpd.net)
 ```
 git clone https://github.com/blankwall/asm_prog_ex.git
 cd asm_prog_ex
-./run_install.s
+sudo ./run_install.s
 ./run_test.s
 ```
 

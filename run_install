@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Abort on failure
+set -e
+
+# Installation for ubuntu >= 16.04
+# Basically this just installs gcc-multilib and yasm
+sudo apt install gcc-multilib yasm
+

@@ -5,15 +5,15 @@ A port of the assembly programming exercises of Assembly Language Adventures to
 Yasm on Linux by [blankwall](https://github.com/blankwall/).
 
 This repository contains exercises for the Assembly Programming course.
-More information could be found at http://www.xorpd.net
+More information could be found at [www.xorpd.net](https://www.xorpd.net)
 
 ## Install Instructions
 
 ```
 git clone https://github.com/blankwall/asm_prog_ex.git
 cd asm_prog_ex
-./install.s
-./test.s
+./run_install.s
+./run_test.s
 ```
 
 If all works hello world should be printed and you will have a directory called assembly with a basic program in it. :) !
@@ -24,11 +24,13 @@ Most likely that you have a x64 machine. However, this course is for running 32
 bits programs. You will need some extra effort to assemble link and run 32 bits
 programs on your machine.
 
-You will need the gcc-multilib package. On my Ubuntu 14.04 I ran:
+`install.s` currently installs two required dependencies: `yasm` and
+`gcc-multilib`. On ubuntu 16.04 this is done using the command:
 
-    sudo apt-get install gcc-4.8-multilib
+    sudo apt install gcc-multilib yasm
 
-to get it. Your linux might have a different version.
+If you are using another Linux distro make sure to install `yasm` and
+`gcc-multilib`.
 
 To assemble a program using Yasm, run:
 
@@ -45,7 +47,4 @@ Now you should get a file "myprogram". You can run it by typing on your
 terminal window:
 
     ./myprogram
-
-
-
 

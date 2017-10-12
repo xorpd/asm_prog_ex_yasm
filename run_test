@@ -7,6 +7,6 @@
 set -e
 
 cd tests
-yasm -felf test.asm 
+yasm -felf test.asm -I../include
 gcc test.o -o test -m32
 ./test

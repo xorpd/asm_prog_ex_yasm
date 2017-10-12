@@ -12,8 +12,8 @@ More information could be found at [www.xorpd.net](https://www.xorpd.net)
 ```
 git clone https://github.com/blankwall/asm_prog_ex.git
 cd asm_prog_ex
-sudo ./run_install.s
-./run_test.s
+sudo ./run_install_ubuntu
+./run_test
 ```
 
 If all works hello world should be printed and you will have a directory called assembly with a basic program in it. :) !

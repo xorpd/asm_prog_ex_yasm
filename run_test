@@ -7,6 +7,7 @@
 set -e
 
 cd tests
+mkdir -p build
 yasm -felf test.asm -I../include
-gcc test.o -o test -m32
-./test
+gcc test.o -o build/test -m32
+./build/test

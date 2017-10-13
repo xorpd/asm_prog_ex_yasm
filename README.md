@@ -10,7 +10,7 @@ More information could be found at [www.xorpd.net](https://www.xorpd.net)
 ## Install Instructions
 
 ```
-git clone https://github.com/blankwall/asm_prog_ex.git
+git clone https://github.com/xorpd/asm_prog_ex_yasm
 cd asm_prog_ex
 sudo ./run_install_ubuntu
 ./run_test

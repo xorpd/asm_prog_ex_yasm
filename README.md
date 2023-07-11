@@ -12,20 +12,35 @@ More information could be found at [www.xorpd.net](https://www.xorpd.net)
 ```
 git clone https://github.com/xorpd/asm_prog_ex_yasm
 cd asm_prog_ex
-sudo ./run_install_ubuntu
-./run_test
+sudo ./prep_env.sh
+. env.src
 ```
+We only use sudo in this instance to ensure that YASM and GCC multlib are installed. 
 
+```
+cd build
+asm_compile test
+./build/test
+```
 If all works hello world should be printed and you will have a directory called assembly with a basic program in it. :) !
+
+In order to clean up an exercises you been working on just use the following command to remove the build directory.
+
+```
+asm_clean
+```
 
 ## Assembling, Linking and running programs
 
 Most likely that you have a x64 machine. However, this course is for running 32
 bits programs. You will need some extra effort to assemble link and run 32 bits
-programs on your machine.
+programs on your machine. The following steps give an overview of the assemble 
+link and process.
 
-`install.s` currently installs two required dependencies: `yasm` and
-`gcc-multilib`. On ubuntu 16.04 this is done using the command:
+
+
+`prep_env.sh` automates this process. It currently installs two required dependencies: `yasm` and
+`gcc-multilib`. On ubuntu 16.04 and most debian based systems this is done using the command:
 
     sudo apt install gcc-multilib yasm
 

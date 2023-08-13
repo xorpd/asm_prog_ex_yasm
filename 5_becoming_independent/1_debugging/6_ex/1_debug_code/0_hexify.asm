@@ -42,7 +42,7 @@ section .bss
 ; equ==============================================
 section .text
 
-start:
+main:
     ; Ask for a string from the user:
     mov     esi,please_enter
     call    print_str

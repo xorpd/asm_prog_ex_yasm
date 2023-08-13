@@ -34,27 +34,26 @@ extern	exit
 section .text
 
 main:
-    
-    mov     ecx,10000000h
+  mov     ecx,10000000h
 
 looper:
     mov     eax,ecx
-    mul     ecx     
+    mul     ecx
     mov     esi,eax
     mul     ecx
     mov     edi,eax
 
     mov     eax,esi
-    mov     esi,18d
+    mov     esi,18
     mul     esi
     sub     edi,eax
 
     mov     eax,ecx
-    mov     ebx,101d
+    mov     ebx,101
     mul     ebx
     add     edi,eax
 
-    sub     edi,168d
+    sub     edi,168
 
     cmp     edi,0
     jnz     skip_print

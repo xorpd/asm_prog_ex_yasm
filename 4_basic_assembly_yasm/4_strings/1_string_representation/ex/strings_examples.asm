@@ -27,4 +27,3 @@ song    db  'Walking in the realms of brightness',10
         db  'Down into the soul',0
 
 lines   db  'First line',0dh,0ah,'second line',0
-    

@@ -36,7 +36,7 @@ main:
     call    read_hex
 
     xor     ebx,ebx     ; Zero ebx.
-    mov     ecx,32d
+    mov     ecx,32
 
 xor_bit:
     mov     esi,eax

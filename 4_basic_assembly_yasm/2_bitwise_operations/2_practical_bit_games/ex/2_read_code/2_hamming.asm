@@ -39,7 +39,7 @@ main:
     xor     eax,edx
 
     xor     ebx,ebx     ; Zero ebx.
-    mov     ecx,32d
+    mov     ecx,32
 
 add_bit:
     mov     esi,eax

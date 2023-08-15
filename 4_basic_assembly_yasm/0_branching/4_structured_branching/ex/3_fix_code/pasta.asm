@@ -54,7 +54,7 @@ main:
 
 iters:
     add     ebx,ecx
-    mov     esi,5d
+    mov     esi,5
     mov     eax,ecx
     mov     edx,0
     div     esi

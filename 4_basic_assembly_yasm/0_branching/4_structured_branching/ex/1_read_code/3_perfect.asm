@@ -37,7 +37,7 @@ global main
 extern	exit 	
 
 ; ===============================================
-section .text
+;; section .text
 
 main:
    

@@ -19,7 +19,6 @@ BITS 32
 global main
 extern exit
 
-%include "training.s"
 
 STRUC PNT
     .x:   db  ?
@@ -41,7 +40,10 @@ STRUC COLORED_LINE
     .cline:   LINE    ?
 ENDSTRUC
 
-    
+
+%include "training.s"
+include "training.inc"
+
 ; ===============================================
 section .text
 
@@ -108,5 +110,3 @@ main:
 	push	0
 	call	[ExitProcess]
 
-
-include 'training.inc'

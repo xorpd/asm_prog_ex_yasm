@@ -43,7 +43,7 @@ extern	exit
 section .text
 
     ; The program begins here:
-
+main: 
     call    read_hex
     mov     ecx,1
 

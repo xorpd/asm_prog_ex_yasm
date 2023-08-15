@@ -29,6 +29,7 @@ extern exit
 ; ===============================================
 section .text
 
+main:
 start:
 
     mov     esi,start

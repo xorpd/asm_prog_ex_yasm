@@ -40,7 +40,7 @@ section .data
 ; equ==============================================
 section .text
 
-start:
+main:
     ; Ask for a secret hex password from the user:
     mov     esi,please_enter
     call    print_str

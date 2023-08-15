@@ -18,6 +18,8 @@
 BITS 32
 global main
 extern exit
+
+%include "training.s"
 ; ===============================================
 section .text
 
